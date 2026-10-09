@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_routes_1 = __importDefault(require("./auth.routes"));
+const medicalCenter_routes_1 = __importDefault(require("./medicalCenter.routes"));
+const bloodUnit_routes_1 = __importDefault(require("./bloodUnit.routes"));
+const transferRequest_routes_1 = __importDefault(require("./transferRequest.routes"));
+const dashboard_routes_1 = __importDefault(require("./dashboard.routes"));
+const movementHistory_routes_1 = __importDefault(require("./movementHistory.routes"));
+const router = (0, express_1.Router)();
+router.use('/auth', auth_routes_1.default);
+router.use('/medical-centers', medicalCenter_routes_1.default);
+router.use('/blood-units', bloodUnit_routes_1.default);
+router.use('/transfers', transferRequest_routes_1.default);
+router.use('/dashboard', dashboard_routes_1.default);
+router.use('/movements', movementHistory_routes_1.default);
+exports.default = router;

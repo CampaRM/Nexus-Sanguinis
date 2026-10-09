@@ -1,0 +1,15 @@
+{
+  "name": "nexus-sanguinis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema Centralizado de Gestión de Banco de Sangre y Trazabilidad Intercentros",
+  "scripts": {
+    "dev:backend": "cd backend && pnpm dev",
+    "dev:frontend": "cd frontend && pnpm start",
+    "dev": "concurrently -k -n \"BACKEND,FRONTEND\" -c \"magenta.bold,cyan.bold\" \"pnpm dev:backend\" \"pnpm dev:frontend\"",
+    "start": "pnpm dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
