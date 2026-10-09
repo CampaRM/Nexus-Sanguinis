@@ -4,7 +4,7 @@
     "SUBTITLE": "Sistema de Gestión de Banco de Sangre",
     "DASHBOARD": "Panel de Control",
     "INVENTORY": "Inventario de Sangre",
-    "TRANSFERS": "Transferencias",
+    "TRANSFERS": "Solicitudes de Transferencia",
     "CENTERS": "Centros Médicos",
     "MOVEMENTS": "Historial de Auditoría",
     "LOGOUT": "Cerrar Sesión",

@@ -192,9 +192,7 @@ export class RegisterComponent implements OnInit {
         next: () => {
           this.isLoading = false;
           // Redirect to /login with success alert instead of going directly to /dashboard
-          const successMsg = this.i18nService.currentLanguage() === 'es'
-            ? 'Cuenta creada exitosamente. Por favor inicia sesión.'
-            : 'Account created successfully. Please log in.';
+          const successMsg = 'Cuenta creada exitosamente. Por favor inicia sesión.';
 
           this.router.navigate(['/login'], {
             queryParams: { registered: 'true' },

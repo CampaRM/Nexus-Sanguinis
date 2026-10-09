@@ -11,6 +11,7 @@ export type SupportedLanguage = 'en' | 'es';
 export class I18nService {
   private currentLangSignal = signal<SupportedLanguage>('en');
   public currentLang = this.currentLangSignal.asReadonly();
+  public currentLanguage = this.currentLangSignal.asReadonly();
   public version = signal<number>(0);
 
   private translations: Record<SupportedLanguage, Record<string, any>> = {

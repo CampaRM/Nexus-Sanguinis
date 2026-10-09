@@ -4,7 +4,7 @@
     "SUBTITLE": "Blood Bank Management System",
     "DASHBOARD": "Dashboard",
     "INVENTORY": "Blood Inventory",
-    "TRANSFERS": "Transfers",
+    "TRANSFERS": "Transfer Requests",
     "CENTERS": "Medical Centers",
     "MOVEMENTS": "Audit History",
     "LOGOUT": "Sign Out",

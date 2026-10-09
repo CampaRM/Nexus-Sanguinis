@@ -4,16 +4,19 @@
     "SUBTITLE": "Blood Bank Management System",
     "DASHBOARD": "Dashboard",
     "INVENTORY": "Blood Inventory",
-    "TRANSFERS": "Transfers",
+    "TRANSFERS": "Transfer Requests",
     "CENTERS": "Medical Centers",
-    "MOVEMENTS": "Traceability Log",
+    "MOVEMENTS": "Audit History",
     "LOGOUT": "Sign Out",
     "WELCOME": "Welcome",
     "ROLE_ADMIN": "General Administrator",
     "ROLE_MANAGER": "Bank Manager",
     "SETTINGS": "Settings",
     "PROFILE": "Profile",
-    "LANGUAGE": "Language"
+    "LANGUAGE": "Language",
+    "SEARCH_PLACEHOLDER": "Search units, centers, transfers...",
+    "NETWORK_STATUS": "Operational",
+    "PROFILE_SETTINGS": "Profile Settings"
   },
   "ROLES": {
     "ADMIN_GENERAL": "General Administrator",

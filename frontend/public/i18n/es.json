@@ -4,16 +4,19 @@
     "SUBTITLE": "Sistema de Gestión de Banco de Sangre",
     "DASHBOARD": "Panel de Control",
     "INVENTORY": "Inventario de Sangre",
-    "TRANSFERS": "Transferencias",
+    "TRANSFERS": "Solicitudes de Transferencia",
     "CENTERS": "Centros Médicos",
-    "MOVEMENTS": "Trazabilidad",
+    "MOVEMENTS": "Historial de Auditoría",
     "LOGOUT": "Cerrar Sesión",
     "WELCOME": "Bienvenido",
     "ROLE_ADMIN": "Administrador General",
     "ROLE_MANAGER": "Gestor de Banco",
     "SETTINGS": "Configuración",
     "PROFILE": "Perfil",
-    "LANGUAGE": "Idioma"
+    "LANGUAGE": "Idioma",
+    "SEARCH_PLACEHOLDER": "Buscar unidades, centros, transferencias...",
+    "NETWORK_STATUS": "Operacional",
+    "PROFILE_SETTINGS": "Configuración de Perfil"
   },
   "ROLES": {
     "ADMIN_GENERAL": "Administrador General",
@@ -159,7 +162,7 @@
     "HAVE_ACCOUNT": "¿Ya tienes una cuenta? Inicia Sesión",
     "REGISTER_TITLE": "Crear Cuenta de Usuario",
     "REGISTER_SUBTITLE": "Únete a la red de distribución de sangre",
-    "REGISTER_SUCCESS": "¡Cuenta creada exitosamente! Por favor inicia sesión."
+    "REGISTER_SUCCESS": "Cuenta creada exitosamente. Por favor inicia sesión."
   },
   "STATUS": {
     "AVAILABLE": "Disponible",
