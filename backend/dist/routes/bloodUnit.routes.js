@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const bloodUnit_controller_1 = require("../controllers/bloodUnit.controller");
+const auth_middleware_1 = require("../middlewares/auth.middleware");
+const role_middleware_1 = require("../middlewares/role.middleware");
+const validate_middleware_1 = require("../middlewares/validate.middleware");
+const bloodUnit_dto_1 = require("../dtos/bloodUnit.dto");
+const router = (0, express_1.Router)();
+const controller = new bloodUnit_controller_1.BloodUnitController();
+router.use(auth_middleware_1.authenticateJwt);
+router.get('/', (0, validate_middleware_1.validateQuery)(bloodUnit_dto_1.BloodUnitFilterDtoSchema), (req, res, next) => controller.getFiltered(req, res, next));
+router.get('/:id', (req, res, next) => controller.getById(req, res, next));
+router.post('/', (0, validate_middleware_1.validateBody)(bloodUnit_dto_1.CreateBloodUnitDtoSchema), (req, res, next) => controller.create(req, res, next));
+router.put('/:id', (0, validate_middleware_1.validateBody)(bloodUnit_dto_1.UpdateBloodUnitDtoSchema), (req, res, next) => controller.update(req, res, next));
+router.delete('/:id', (0, role_middleware_1.requireRoles)('ADMIN_GENERAL', 'BANK_MANAGER'), (req, res, next) => controller.delete(req, res, next));
+exports.default = router;

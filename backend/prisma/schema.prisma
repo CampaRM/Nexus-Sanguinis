@@ -1,0 +1,147 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum RoleName {
+  ADMIN_GENERAL
+  BANK_MANAGER
+}
+
+enum BloodType {
+  A
+  B
+  AB
+  O
+}
+
+enum RhFactor {
+  POSITIVE
+  NEGATIVE
+}
+
+enum BloodUnitStatus {
+  AVAILABLE
+  NEAR_EXPIRATION
+  EXPIRED
+  DISCARDED
+  TRANSFERRED
+}
+
+enum TransferRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  IN_TRANSIT
+  COMPLETED
+}
+
+model Role {
+  id_role   Int      @id @default(autoincrement())
+  role_name RoleName @unique
+
+  users User[]
+
+  @@map("roles")
+}
+
+model MedicalCenter {
+  id_medical_center Int      @id @default(autoincrement())
+  name              String   @db.VarChar(150)
+  type              String   @db.VarChar(60)
+  address           String   @db.VarChar(255)
+  phone             String   @db.VarChar(50)
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  blood_units         BloodUnit[]
+  requested_transfers TransferRequest[] @relation("RequestingCenter")
+  supplied_transfers  TransferRequest[] @relation("SupplyingCenter")
+  users               User[]
+
+  @@map("medical_centers")
+}
+
+model User {
+  id_user           Int      @id @default(autoincrement())
+  full_name         String   @db.VarChar(120)
+  email             String   @unique @db.VarChar(120)
+  password_hash     String   @db.VarChar(255)
+  id_role           Int
+  id_medical_center Int?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  role           Role           @relation(fields: [id_role], references: [id_role])
+  medical_center MedicalCenter? @relation(fields: [id_medical_center], references: [id_medical_center], onDelete: SetNull)
+
+  movements MovementHistory[]
+
+  @@map("users")
+}
+
+model BloodUnit {
+  id_blood_unit     Int             @id @default(autoincrement())
+  blood_type        BloodType
+  rh_factor         RhFactor
+  extraction_date   DateTime
+  expiration_date   DateTime
+  status            BloodUnitStatus @default(AVAILABLE)
+  id_medical_center Int
+  created_at        DateTime        @default(now())
+  updated_at        DateTime        @updatedAt
+
+  medical_center MedicalCenter @relation(fields: [id_medical_center], references: [id_medical_center])
+
+  transfer_details TransferDetail[]
+  movement_history MovementHistory[]
+
+  @@map("blood_units")
+}
+
+model TransferRequest {
+  id_transfer_request  Int                   @id @default(autoincrement())
+  id_requesting_center Int
+  id_supplying_center  Int
+  blood_type           BloodType
+  quantity             Int
+  status               TransferRequestStatus @default(PENDING)
+  request_date         DateTime              @default(now())
+  created_at           DateTime              @default(now())
+  updated_at           DateTime              @updatedAt
+
+  requesting_center MedicalCenter @relation("RequestingCenter", fields: [id_requesting_center], references: [id_medical_center])
+  supplying_center  MedicalCenter @relation("SupplyingCenter", fields: [id_supplying_center], references: [id_medical_center])
+
+  transfer_details TransferDetail[]
+
+  @@map("transfer_requests")
+}
+
+model TransferDetail {
+  id_transfer_detail  Int @id @default(autoincrement())
+  id_transfer_request Int
+  id_blood_unit       Int
+
+  transfer_request TransferRequest @relation(fields: [id_transfer_request], references: [id_transfer_request], onDelete: Cascade)
+  blood_unit       BloodUnit       @relation(fields: [id_blood_unit], references: [id_blood_unit])
+
+  @@map("transfer_details")
+}
+
+model MovementHistory {
+  id_movement_history Int      @id @default(autoincrement())
+  id_blood_unit       Int
+  id_user             Int
+  action              String   @db.VarChar(255)
+  timestamp           DateTime @default(now())
+
+  blood_unit BloodUnit @relation(fields: [id_blood_unit], references: [id_blood_unit])
+  user       User      @relation(fields: [id_user], references: [id_user])
+
+  @@map("movement_histories")
+}
