@@ -1,7 +1,4 @@
 -- Nexus Sanguinis: Sistema Centralizado de Gestión de Banco de Sangre y Trazabilidad
--- Script del Esquema de Base de Datos (Compatible con MySQL 8.0+ / 9.x)
--- Arquitectura en Tercera Forma Normal (3FN)
--- Todas las Claves Primarias y Foráneas siguen el estándar de nomenclatura 'id_<entity>'
 
 CREATE DATABASE IF NOT EXISTS `nexus_sanguinis`
   DEFAULT CHARACTER SET utf8mb4
